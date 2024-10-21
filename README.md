@@ -7,8 +7,8 @@ Para poder demostrar y aprender la creacion y consumo de Interfaces de Programac
 
 ## Historial de datos 
 
-|No.|Fecha|Descripcion|Estatus|
-|---|---|--|---|
+|No.|Fecha|Descripcion|Potenciador|Estatus|
+|---|---|--|---|--|
 |8.|21/10/24|Nuevo Repositorio del Proyecto de implementado .gitignore|1|⭐Activa|
 
 
