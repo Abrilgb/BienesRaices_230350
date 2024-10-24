@@ -9,8 +9,9 @@ Para poder demostrar y aprender la creacion y consumo de Interfaces de Programac
 
 |No.|Fecha|Descripcion|Potenciador|Estatus|
 |---|---|--|---|--|
-|8.|21/10/24|Nuevo Repositorio del Proyecto de implementado .gitignore|1|⭐Activa|
-|9.|22/10/24|Creacion de una aplicaion utlizando express|11|⭐Activa|
+|8.|21/10/24|Nuevo Repositorio del Proyecto de implementado .gitignore|1|✅Finalizada |
+|9.|22/10/24|Creacion de una aplicaion utlizando express|11|✅Finalizada |
+|10.|24/10/24|operaciones basicas de API atraves de los verbos HTTP| 12|✅Finalizada |
 
 
 ✅Finalizada 
