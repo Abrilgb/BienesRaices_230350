@@ -2,9 +2,9 @@
 // CommonJS
 import express from 'express';
 //const express= require('express'); //Importar la librería para crear un servidor web
-import generalRoutes from './routers/generalRouters.js'
+import generalRoutes from './routes/generalRoutes.js'
 // instanciar nuestra aplicacion web
-import userRoutes from './routers/userRoutes.js'
+import userRouter from './routes/userRouter.js'
 const app=express();
 
 //configuramos nuestro servidor web
@@ -15,4 +15,4 @@ app.listen(port, ()=>{
 
 app.use('/',generalRoutes );
 
-app.use('/usuario',userRoutes);
+app.use('/usuario',userRouter);
