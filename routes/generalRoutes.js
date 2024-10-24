@@ -8,7 +8,7 @@ router.get('/',function(req,res){
 //Routing- enrutamiento .
 //Probamos las rutas para poder presentar mensajes al
 router.get('/QuienSoy',function(req,res){
-    res.json({"estudiante":"Angel de Jesus Rufino Mendoza",
+    res.json({"estudiante":"Abril Guzman Barrera",
         "carrera":"TI DSM",
         "grado":"4°",
         "grupo":"B",
