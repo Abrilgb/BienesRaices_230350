@@ -1,21 +1,17 @@
-import express from `express`;
+import express from 'express'; 
+
 const router = express.Router();
 
-//get 
-router.get("/busquedaPorID/:id", function(req,res){
-    respounse.send(`Se esta solicitando buscar al ususario con ID: ${red.params.id}` );
+//GET
+router.get("/busquedaPorID/:id",function(request,response){
+    response.send(`Se esta solicitando buscar al usuario con ID: ${request.params.id}`)
+})
 
-}) // 2 componenetes de una petiion, ruta, funcion claback
-
-
-//post 
-
-//pust 
-
-//patch 
+//POST
 
 
+//PUT
 
-//delete 
+//PATCH
 
 export default router;
