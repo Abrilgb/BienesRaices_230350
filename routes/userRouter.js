@@ -1,5 +1,7 @@
 import express, { request } from 'express';
+import {formularioLogin, formularioRegister, formularioPasswordRecovery} from '../controlles/userController.js'
 const router = express.Router();
+
 
 // GET - Se utiliza para ña ñectura de datos e infotmacion del servidor al cliente
 // EndPoints - Son las rutas para acceder a laas secciones o funciones de nuestra aplicacion Web
@@ -46,4 +48,7 @@ router.delete("/deleteUser/:email", function(req, res){
     res.send(`Se ha solicitado la eliminacion del usuario asociado al correo: ${req.params.email}`)
 })
 
+router.get("/login", formularioLogin)
+router.get("/createAcount", formularioRegister)
+router.get("/passwordRecovery", formularioPasswordRecovery)
 export default router;
