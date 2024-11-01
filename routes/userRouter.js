@@ -1,4 +1,4 @@
-import express, { request } from 'express';
+import express, { request, Router } from 'express';
 import {formularioLogin, formularioRegister, formularioPasswordRecovery} from '../controlles/userController.js'
 const router = express.Router();
 

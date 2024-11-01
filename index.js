@@ -20,7 +20,7 @@ app.listen(port, () => {
 app.use('/',generalRoutes);
 app.use('/auth/', userRoutes);
 //Probamos rutas para poder presentar mensajes al usuario a través del navegador
-
+app.use('/usuario/', userRoutes);
 
 //Habilitar pug
 //Set es para hacer configuraciones
