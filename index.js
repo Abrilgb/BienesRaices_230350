@@ -27,3 +27,5 @@ app.use('/usuario/', userRoutes);
 app.set('view engine','pug')
 app.set('views','./views')//se define donde tendrá el proyecto las vistas
 //auth -> auntentificación
+
+app.use(express.static('public'))
