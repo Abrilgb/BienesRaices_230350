@@ -7,7 +7,7 @@
   "scripts": {
     "saluda": "node saluda.js",
     "server": "nodemon index.js",
-    "css":"postcss public/CSS/tailwind.css -o public/CSS/app.css --watch"
+    "css": "postcss public/CSS/tailwind.css -o public/CSS/app.css --watch"
   },
   "repository": {
     "type": "git",
