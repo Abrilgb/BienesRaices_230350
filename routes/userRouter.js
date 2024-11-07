@@ -1,5 +1,6 @@
 import express, { request, Router } from 'express';
-import {formularioLogin, formularioRegister, formularioPasswordRecovery} from '../controlles/userController.js'
+import {formularioLogin, formularioRegister, formularioPasswordRecovery, register} 
+from '../controlles/userController.js'
 const router = express.Router();
 
 
@@ -49,6 +50,6 @@ router.delete("/deleteUser/:email", function(req, res){
 })
 
 router.get("/login", formularioLogin)
-router.get("/createAcount", formularioRegister)
+router.post("/createAcount", formularioRegister)
 router.get("/passwordRecovery", formularioPasswordRecovery)
 export default router;

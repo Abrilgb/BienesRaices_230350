@@ -13,6 +13,10 @@ const formularioRegister = (a,b) => {
     })
 }
 
+const register = (a,b)=> {
+   console.log('Registrando...')
+}
+
 const formularioPasswordRecovery = (a,b)=>{
     b.render('auth/passwordRecovery', {
         page: "Recuperacion de contraseña "
@@ -20,4 +24,4 @@ const formularioPasswordRecovery = (a,b)=>{
 }
 
 //ponerdisponibles para toda la  pagina 
-export {formularioLogin, formularioRegister, formularioPasswordRecovery}
+export {formularioLogin, formularioRegister, formularioPasswordRecovery, register}

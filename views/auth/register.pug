@@ -8,7 +8,7 @@ block contenido
 
         .mt-8.mx-auto.max-w-md
             .bg-white.py-8.px-4.shadow
-                form(action="/ruta_valida").space-y-5.px-6
+                form(action="/ruta_valida").space-y-5.px-6(method="POST" action="/auth/register")
                     div
                         label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold Nombre completo:
                         input#nombre.w-full.px-3.border.border-gray-300.rounded-lg.border-2(type="text" placeholder="Nombre con apellidos" name="nombre_usuario")

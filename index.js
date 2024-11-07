@@ -4,11 +4,20 @@
 import express from 'express';
 import generalRoutes from './routes/generalRoutes.js'
 import userRoutes from './routes/userRouter.js'
+import db from './config/db.js'
 //const express = require('express'); //DECLARANDO UN OBJETO QUE VA A PERMITIR LEER PAGINAS ETC.importar la libreria para crear un servidor web
 
 //INSTANCIAR NUESTRA APLICACIÓN WEB
 
 const app = express();
+
+//coneccion a la base de datos 
+try {
+  await db.authenticate();
+  console.log('Conexion Correcta a la Base de datos ')
+}catch (error){
+  console.log(error);
+}
 
 //CONFIGURAMOS NUESTRO SERVIDOR WEB (puerto donde estara escuchando nuestro sitio web)
 const port = 3000;
