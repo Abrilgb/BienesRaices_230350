@@ -1,25 +1,31 @@
-const express = require(`express`); // declarando un objeto : mostrar paginas leer datos. Importar la libreria para crear un servidor web 
+//ECMA Sript 6
+// commin JS
 
-//instanciar nuestra aplicacion 
-const app = express()
+import express from 'express';
+import generalRoutes from './routes/generalRoutes.js'
+import userRoutes from './routes/userRouter.js'
+//const express = require('express'); //DECLARANDO UN OBJETO QUE VA A PERMITIR LEER PAGINAS ETC.importar la libreria para crear un servidor web
 
-//configuramos nuestro servidor web
-const port = 3000; 
-app.listen(port, ()=>{
-    console.log(`La aplicacion a iniciado en el puerto ${port}`);
-})
+//INSTANCIAR NUESTRA APLICACIÓN WEB
 
-//probamos la ruta para poder presentar ,emsajes al usuario 
+const app = express();
 
-app.get("/", function(req, res){
-res.send("Hola mundo desde Node, a traves del navegador");
-})
+//CONFIGURAMOS NUESTRO SERVIDOR WEB (puerto donde estara escuchando nuestro sitio web)
+const port = 3000;
+app.listen(port, () => {
+  console.log(`La aplicación ha iniciado en el puerto: ${port}`);  
+});
 
-app.get("/QuienSoy", function(req, res){
-    res.json({"estudiante": "Abril Guzman Barrera ", 
-        "carrera": "TI DSM",
-        "grado": "4",
-        "grupo" : "B",
-        "asignatura": "Aplicaciones web orientada a servicios (AWOS)"
-    });
-})
+//Routing - Enrutamiento
+app.use('/',generalRoutes);
+app.use('/auth/', userRoutes);
+//Probamos rutas para poder presentar mensajes al usuario a través del navegador
+app.use('/usuario/', userRoutes);
+
+//Habilitar pug
+//Set es para hacer configuraciones
+app.set('view engine','pug')
+app.set('views','./views')//se define donde tendrá el proyecto las vistas
+//auth -> auntentificación
+
+app.use(express.static('public'))
