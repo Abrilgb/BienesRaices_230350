@@ -50,6 +50,6 @@ router.delete("/deleteUser/:email", function(req, res){
 })
 
 router.get("/login", formularioLogin)
-router.post("/createAcount", formularioRegister)
+router.get("/createAcount", formularioRegister)
 router.get("/passwordRecovery", formularioPasswordRecovery)
 export default router;
