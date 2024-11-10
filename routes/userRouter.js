@@ -1,5 +1,5 @@
 import express, { request, Router } from 'express';
-import {formularioLogin, formularioRegister, formularioPasswordRecovery, register} 
+import {formularioLogin, formularioRegister,registrar, formularioPasswordRecovery} 
 from '../controlles/userController.js'
 const router = express.Router();
 
@@ -21,13 +21,13 @@ res.send(`Se ha solicitado la creacion de un nuevo usuario de nombre: ${req.para
 
 //PUT - Se utiliza para la actualizacion total de informacion del cliente al servido
 
-router.put("/replaceUserByEmail/:name/:email/:password", function(a,b){
+router.put("/replaceUserByEmail/:name/:email/:password", function(req,res){
     b.send(`Se ha solicitado el remplazo de toda la informacion del usuario: ${a.params.name},
         con correo ${a.params.email} y contraseña: ${a.params.password}`)
 })
 
 // PATCH - Se utiliza para la aactualizacion paracial
-router.patch("/updatePassword/:email/:newPassword/:newPasswordConfirm", function(a,b){ 
+router.patch("/updatePassword/:email/:newPassword/:newPasswordConfirm", function(req,res){ 
     const{email, newPassword, newPasswordConfirm} = a.params // Desestructuracion de un objeto
 
     if(newPassword === newPasswordConfirm){
@@ -51,5 +51,6 @@ router.delete("/deleteUser/:email", function(req, res){
 
 router.get("/login", formularioLogin)
 router.get("/createAcount", formularioRegister)
+router.post("/registrar", registrar) //se le cambio la ruta para indicarle que hay un metodo para poder cargarlo
 router.get("/passwordRecovery", formularioPasswordRecovery)
 export default router;

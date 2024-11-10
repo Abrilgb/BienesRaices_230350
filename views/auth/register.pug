@@ -8,7 +8,7 @@ block contenido
 
         .mt-8.mx-auto.max-w-md  
             .bg-white.py-8.px-4.shadow
-                form.space-y-5.px-6
+                form.space-y-5.px-6(method="POST" action="/auth/registrar")
                     div
                         label.block.text-sm.uppercase.text-brown-100.mb-2.font-bold Nombre completo:
                         input#nombre.w-full.px-3.border.border-green-100.rounded-lg.border-2(type="text" placeholder="Nombre con apellidos" name="nombre_usuario")

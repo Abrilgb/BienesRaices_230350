@@ -1,5 +1,3 @@
-//ECMA Sript 6
-// commin JS
 
 import express from 'express';
 import generalRoutes from './routes/generalRoutes.js'
@@ -11,9 +9,12 @@ import db from './config/db.js'
 
 const app = express();
 
+//habilitarlectura 
+app.use(express.urlencoded({extended:true}))
 //coneccion a la base de datos 
 try {
   await db.authenticate();
+  db.sync()//crear la tabla en caso de que no este creada 
   console.log('Conexion Correcta a la Base de datos ')
 }catch (error){
   console.log(error);
