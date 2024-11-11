@@ -1,14 +1,16 @@
 import { DataTypes} from 'sequelize'
-import db from '../config/db.js'
+import db from '../db/config.js'
 
-const Usuario = db.define('usuarios', { 
+const Usuario = db.define('usuario', { //una tabla base :tbb
     nombre: {
         type: DataTypes.STRING,
          allowNull: false
     },
     email:{
         type: DataTypes.STRING,
-         allowNull: false
+         allowNull: false,
+         unique:true
+         
     },
     password: {
         type: DataTypes.STRING,

@@ -51,6 +51,6 @@ router.delete("/deleteUser/:email", function(req, res){
 
 router.get("/login", formularioLogin)
 router.get("/createAcount", formularioRegister)
-router.post("/registrar", registrar) //se le cambio la ruta para indicarle que hay un metodo para poder cargarlo
+router.post("/createAcount", registrar) //se le cambio la ruta para indicarle que hay un metodo para poder cargarlo
 router.get("/passwordRecovery", formularioPasswordRecovery)
 export default router;

@@ -2,7 +2,7 @@
 import express from 'express';
 import generalRoutes from './routes/generalRoutes.js'
 import userRoutes from './routes/userRouter.js'
-import db from './config/db.js'
+import db from './db/config.js'
 //const express = require('express'); //DECLARANDO UN OBJETO QUE VA A PERMITIR LEER PAGINAS ETC.importar la libreria para crear un servidor web
 
 //INSTANCIAR NUESTRA APLICACIÓN WEB
@@ -11,6 +11,7 @@ const app = express();
 
 //habilitarlectura 
 app.use(express.urlencoded({extended:true}))
+
 //coneccion a la base de datos 
 try {
   await db.authenticate();

@@ -14,14 +14,15 @@ const formularioRegister = (req,res) => {
 
     })
 }
-
+//async : estan haciendose varias cosas al mismo tiempo, se divide el trabajo 
 const registrar= async(req,res)=> {
-   const usuarios = await Usuario.create(req.body)
-   res.json(usuarios)//retorna el usuario con informacion en la base de datos 
+   const usuario = await Usuario.create(req.body)
+   console.log(req.body)
+   res.json(usuario)//retorna el usuario con informacion en la base de datos 
 }
 
 const formularioPasswordRecovery = (req,res)=>{
-    b.render('auth/passwordRecovery', {
+    res.render('auth/passwordRecovery', {
         page: "Recuperacion de contraseña "
     })
 }
