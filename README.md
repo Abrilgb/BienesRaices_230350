@@ -12,6 +12,7 @@ Para poder demostrar y aprender la creacion y consumo de Interfaces de Programac
 |8.|21/10/24|Nuevo Repositorio del Proyecto de implementado .gitignore|1|✅Finalizada |
 |9.|22/10/24|Creacion de una aplicaion utlizando express|11|✅Finalizada |
 |10.|24/10/24|operaciones basicas de API atraves de los verbos HTTP| 12|✅Finalizada |
+|11.|Creación de fromularios para el ingreso, Registro y Recuperación de contraseñas de usuario|13|✅Finalizada|
 
 
 ✅Finalizada 
