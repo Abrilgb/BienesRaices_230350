@@ -6,9 +6,14 @@ block contenido
             span.font-normal.text-brown-100 Raices
         h2.text-center.font-extrabold.text-2xl.text-white= page
 
+        if errores 
+            div(class="max-w-md mx-auto my-10")
+                each error in errores   
+                    p.bg-brown-100.text-white.ippercase.text-center.p-2.mb-1.font-bold
+
         .mt-8.mx-auto.max-w-md  
             .bg-white.py-8.px-4.shadow
-                form.space-y-5.px-6(method="POST" action="/auth/createAcount")
+                form.space-y-5.px-6(method="POST" action="/auth/createAcount" noValidate)
                     div
                         label.block.text-sm.uppercase.text-brown-100.mb-2.font-bold Nombre completo:
                         input#nombre.w-full.px-3.border.border-green-100.rounded-lg.border-2(type="text" placeholder="Nombre con apellidos" name="nombre")
