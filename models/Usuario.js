@@ -18,6 +18,14 @@ const Usuario = db.define('usuario', { //una tabla base :tbb
     },
     token: DataTypes.STRING, 
     confirmado: DataTypes.BOOLEAN
+},{
+    hooks:{
+        beforeCreate: async function (user) {
+            const salt=await bcrypt.genSalt(10)
+            user.password=await bcrypt.hash(user.password,salt);
+
+        }
+    }
 })
 
 export default Usuario
