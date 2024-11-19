@@ -1,8 +1,9 @@
 import { body, check, validationResult } from 'express-validator'//para detonar validaciones y el otro para darnos la validacion 
 import Usuario from '../models/Usuario.js'
-import { response } from 'express'
+import { request, response } from 'express'
 import { generarId } from '../Helpers/tokens.js'
 import { Token } from 'graphql'
+import { emailAfterRegister } from '../Helpers/emails.js'
 
 const formularioLogin = (req,res) => {
     res.render('auth/login', {
@@ -71,14 +72,23 @@ const registrar= async(req,res)=> {
         token:generarId()
         });
         response.json(newUser);
+
+        //enviar correos 
+        emailAfterRegister({
+            name: newUser.name,
+            email: newUser.email,
+            token: newUser.token
+        })
+
+         //Mostrar mensaje de confirmacion 
+        res.render('templates/mesaage',
+            {
+    
+            }
+        )
     return;
 
-    //Mostrar mensaje de confirmacion 
-    res.render('templates/mesaage',
-        {
-    
-        }
-    )
+   
 }
 //retorna el usuario con informacion en la base de datos 
 
@@ -88,10 +98,20 @@ const formularioPasswordRecovery = (req,res)=>{
     })
 }
 
+const confirm = (req, res) =>{
+    //validar token - Si exisate 
+    //consirmar cuenta 
+    //enciar un mensaje
+    const recivedToken  
+    comnsole.log(`Intentando confimar la cuentya del token : ${request.params.token}`)
+
+
+}
 //ponerdisponibles para toda la  pagina 
 export {
     formularioLogin, 
     formularioRegister,
     registrar,
-    formularioPasswordRecovery
+    formularioPasswordRecovery,
+    confirm
 }

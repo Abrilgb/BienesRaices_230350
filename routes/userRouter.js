@@ -1,5 +1,5 @@
 import express, { request, Router } from 'express';
-import {formularioLogin, formularioRegister,registrar, formularioPasswordRecovery} 
+import {formularioLogin, formularioRegister,registrar, formularioPasswordRecovery, confirm} 
 from '../controlles/userController.js'
 const router = express.Router();
 
@@ -50,6 +50,7 @@ router.delete("/deleteUser/:email", function(req, res){
 })
 
 router.get("/login", formularioLogin)
+router.get("/confirm/:token", confirm)
 router.get("/createAcount", formularioRegister)
 router.post("/createAcount", registrar) //se le cambio la ruta para indicarle que hay un metodo para poder cargarlo
 router.get("/passwordRecovery", formularioPasswordRecovery)
