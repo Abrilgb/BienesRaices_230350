@@ -1,21 +1,22 @@
 import Sequelize from 'sequelize'
 import dotenv from 'dotenv'
 dotenv.config({path:'.env'})
-//las variabls de entorno: seran para ayudarnos a que no nos hacken
-const db = new Sequelize(process.env.BD_NOMBRE, process.env.BD_USER, process.env.BD_PASS , {
-    host: process.env.BD_HOST,
-    port: 3307,
+
+const db = new Sequelize(process.env.DB_NAME,process.env.DB_USER,process.env.DB_PASS,{
+    host: process.env.DB_DOMAIN,
+    port: process.env.DB_PORT,
     dialect: 'mysql',
+    timezone:'-06:00',
     defione: {
         timestamps: true
     },
-    pool:{ //si requiero nectar a la bd se crea, configura como va ser la conexion 
-        max: 5,//conexiones
+    pool:{
+        max: 5,
         min: 0,
-        acuire: 30000,//tiempo antes de marcar un error 
+        acquire: 30000,
         idle: 10000
-    }
-,
-operatorAliases: false});
+    },
+    operatorAliases: false
+});
 
-export default db ;
+export default db;

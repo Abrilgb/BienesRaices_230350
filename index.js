@@ -1,38 +1,44 @@
+//ECMA Sript 6
+// commin JS
 
 import express from 'express';
-import generalRoutes from './routes/generalRoutes.js'
-import userRoutes from './routes/userRouter.js'
-import db from './db/config.js'
-import dotenv from 'dotenv'
+import generalRoutes from './routes/generalRoutes.js';
+import userRoutes from './routes/userRouter.js';
+import db from './db/config.js';
+import csrf from 'csurf'
+import cookieParser from 'cookie-parser';
+
 //const express = require('express'); //DECLARANDO UN OBJETO QUE VA A PERMITIR LEER PAGINAS ETC.importar la libreria para crear un servidor web
 
 //INSTANCIAR NUESTRA APLICACIÓN WEB
-
-const app = express();
-
-//habilitarlectura 
-app.use(express.urlencoded({extended:true}))
-
-//coneccion a la base de datos 
-try {
-  await db.authenticate();
-  db.sync()//crear la tabla en caso de que no este creada 
-  console.log('Conexion Correcta a la Base de datos ')
-}catch (error){
-  console.log(error);
+//conexion a la Base de Datos
+try{
+  await db.authenticate(); //verifico las credenciales del usuario 
+  db.sync();
+  console.log('Conexion Correcta a la Base DE Datos')
+}catch(error){
+  console.log(error)
 }
 
-//CONFIGURAMOS NUESTRO SERVIDOR WEB (puerto donde estara escuchando nuestro sitio web)
-const port = process.env.BACKEND_PORT;
-app.listen(port, () => {
-  console.log(`La aplicación ha iniciado en el puerto: ${port}`);  
-});
+
+const app = express();
+//Definir la carpeta pública de recursos estáticos (assets)
+app.use(express.static('./public'));
+
+//Habilitar la lectura de datos desde formularios
+app.use(express.urlencoded({ extended: true }));
+
+//Habilitar Cookie Parser
+app.use(cookieParser())
+
+//Habilitar CSRF
+app.use(csrf({cookie:true}))
 
 //Routing - Enrutamiento
 app.use('/',generalRoutes);
 app.use('/auth/', userRoutes);
 //Probamos rutas para poder presentar mensajes al usuario a través del navegador
-app.use('/usuario/', userRoutes);
+
 
 //Habilitar pug
 //Set es para hacer configuraciones
@@ -40,4 +46,8 @@ app.set('view engine','pug')
 app.set('views','./views')//se define donde tendrá el proyecto las vistas
 //auth -> auntentificación
 
-app.use(express.static('public'))
+//CONFIGURAMOS NUESTRO SERVIDOR WEB (puerto donde estara escuchando nuestro sitio web)
+const port = process.env.PORT ||3000;
+app.listen(port, () => {
+  console.log(`La aplicación ha iniciado en el puerto: ${port}`);  
+});
