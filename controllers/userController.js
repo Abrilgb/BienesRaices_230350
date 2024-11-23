@@ -106,7 +106,7 @@ const createNewUser = async (req, res) => {
         console.log(req.body);
     }
 
-    const { name, correo_usuario: email, pass_usuario: password } = req.body;
+    const { name, correo_usuario: email, pass_usuario: password, Fecha_Nacimiento} = req.body;
 
     // Verificamos que el usuario no existe previamente en la BD
     const existingUser = await User.findOne({ where: { email } });
@@ -126,7 +126,8 @@ const createNewUser = async (req, res) => {
     const newUser =await User.create({
         name,
         email,
-        password, 
+        password,
+        Fecha_Nacimiento, 
         token:generateId()
     });
     //Envia un email de confirmacion 
