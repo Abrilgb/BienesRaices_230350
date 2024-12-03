@@ -1,0 +1,35 @@
+extends ../layout/index++
+block contenido
+        div.py-10
+        h2.text-center.font-extrabold.my-10.text-4xl.text-brown-200 Bienes   
+            span.font-normal.text-brown-100 Raices  
+        h2.text-center.font-extrabold.text-2xl.text-white= page
+
+            if errors
+                div(class="max-w-md mx-auto my-10")
+                    each error in errors
+                        div(class="bg-brown-200 text-white p-4 rounded-md flex items-center justify-between mb-2")
+                            if error.msg == "La contraseña es un campo obligatorio"
+                                i(class="fas fa-key mr-2")  
+                            else if error.msg == "El Password debe ser de al menos 8 caracteres"
+                                i(class="fas fa-lock mr-2") 
+                            p(class="text-sm font-bold")= error.msg
+                            button(class="ml-2 bg-transparent border-0 text-white" onclick="this.parentElement.style.display='none'") &times;
+                            
+            .mt-8.mx-auto.max-w-md
+                .bg-white.py-8.px-4.shadow
+                    form(method="POST"  ).space-y-5.px-6
+                        input(type="hidden" name="_csrf" value= csrfToken)
+                        div
+                            label.block.text-sm.uppercase.text-brown-100.mb-2.font-bold Ingresa tu Nueva Contraseña: 
+                            input#password2.w-full.px-3.border.border-green-100.rounded-lg(type="password" placeholder="Minimo de 8 caracteres" name="new_password")
+                        div
+                            label.block.text-sm.uppercase.text-brown-100.mb-2.font-bold Confirmar tu Nueva Contraseña: 
+                            input#password2.w-full.px-3.border.border-green-100.rounded-lg(type="password" placeholder="Que sea igual a la anterior " name="new_password2")
+                        input(class="w-full bg-pigmentgreen hover:bg-green-100 text-white font-bold py-3 cursor-pointer" type="submit" value="Actualizar Contraseña")
+        script.
+            document.querySelectorAll('.bg-redd').forEach(error => {
+                setTimeout(() => {
+                    error.style.display = 'none';
+                }, 7000); 
+            });
