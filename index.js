@@ -7,6 +7,7 @@ import userRoutes from './routes/userRouter.js';
 import db from './db/config.js';
 import csrf from 'csurf'
 import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
 
 //const express = require('express'); //DECLARANDO UN OBJETO QUE VA A PERMITIR LEER PAGINAS ETC.importar la libreria para crear un servidor web
 
@@ -26,7 +27,7 @@ const app = express();
 app.use(express.static('./public'));
 
 //Habilitar la lectura de datos desde formularios
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));  
 
 //Habilitar Cookie Parser
 app.use(cookieParser())
