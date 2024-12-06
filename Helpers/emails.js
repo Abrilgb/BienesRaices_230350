@@ -97,7 +97,7 @@ const passwordRecoveryEmail = async (data) => {
                   
                         
                         <div style="text-align: center; margin: 20px 0;">
-                            <a href="${process.env.BACKEND_URL}:${process.env.PORT ?? 3000}/auth/reset-password/${token}" 
+                            <a href="${process.env.BACKEND_URL}:${process.env.PORT ?? 3000}/auth/passwordRecovery/${token}" 
                                style="background-color: #db995a; color: white; text-decoration: none; padding: 10px 20px; border-radius: 5px; font-size: 16px;">
                                Restablecer Contraseña
                             </a>
@@ -123,4 +123,4 @@ const passwordRecoveryEmail = async (data) => {
         `,
     });
 }
-export { registerEmail, passwordRecoveryEmail };
+export { registerEmail, passwordRecoveryEmail,  };
