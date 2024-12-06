@@ -26,6 +26,76 @@ const formularioPasswordRecovery = (request, response) => {
     });
 };
 
+// Autenticar usuario
+const authenticate = async (req, res) => {
+    // Validación de campos
+    await check('correo_usuario')
+        .notEmpty().withMessage('El correo electrónico es un campo obligatorio')
+        .isEmail().withMessage('Debe ser un correo válido')
+        .run(req);
+    await check('pass_usuario')
+        .notEmpty().withMessage('La contraseña es un campo obligatorio')
+        .run(req);
+
+    const resultado = validationResult(req);
+
+    // Validar errores en los campos
+    if (!resultado.isEmpty()) {
+        return res.render('auth/login', {
+            page: 'Error al intentar iniciar sesión',
+            csrfToken: req.csrfToken(),
+            errors: resultado.array(),
+        });
+    }
+
+    const { correo_usuario: email, pass_usuario: password } = req.body;
+
+    try {
+        // Verificar si el usuario existe en la base de datos
+        const user = await User.findOne({ where: { email } });
+        if (!user) {
+            return res.render('auth/login', {
+                page: 'Iniciar Sesión',
+                csrfToken: req.csrfToken(),
+                errors: [{ msg: 'El Usuario No Existe' }],
+            });
+        }
+
+        // Verificar si el usuario está confirmado
+        if (!user.confirmed) {
+            return res.render('auth/login', {
+                page: 'Iniciar Sesión',
+                csrfToken: req.csrfToken(),
+                errors: [{ msg: 'Tu Cuenta no ha sido Confirmada' }],
+            });
+        }
+
+        // Revisar el password
+        if (!user.verificarPassword(password)) {
+            return res.render('auth/login', {
+                page: 'Iniciar Sesión',
+                csrfToken: req.csrfToken(),
+                errors: [{ msg: 'La Contraseña es Incorrecta' }],
+            });
+        }
+
+        // Generar el token JWT
+        const token = generarJWT({ id: user.id, nombre: user.name });
+
+        // Almacenar el token en una cookie
+        return res.cookie('_token', token, {
+            httpOnly: true,
+        }).redirect('/myProperties');
+    } catch (error) {
+        console.error(error);
+        return res.status(500).render('auth/login', {
+            page: 'Iniciar Sesión',
+            csrfToken: req.csrfToken(),
+            errors: [{ msg: 'Ocurrió un error inesperado. Intenta de nuevo.' }],
+        });
+    }
+};
+
 const createNewUser = async (req, res) => {
     // Validación de los campos que se reciben del formulario
     await check('name').notEmpty().withMessage('El nombre no puede ir vacío').run(req);
@@ -231,6 +301,7 @@ const newPassword= async(req,res)=>{
 export {
     formularioLogin,
     formularioRegister,
+    authenticate,
     formularioPasswordRecovery,
     createNewUser,
     confirm,
