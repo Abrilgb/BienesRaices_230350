@@ -13,9 +13,9 @@ Para poder demostrar y aprender la creacion y consumo de Interfaces de Programac
 |9.|22/10/24|Creacion de una aplicaion utlizando express|11|✅Finalizada |
 |10.|24/10/24|operaciones basicas de API atraves de los verbos HTTP| 12|✅Finalizada |
 |11.|11/11/24|Creación de fromularios para el ingreso, Registro y Recuperación de contraseñas de usuario|13|✅Finalizada|
-
-
-✅Finalizada 
+|12.|14/11/2024|Implementación de validación en formulario y duplicidad en base de datos|30|✅ Finalizada.|
+|13.|21/11/2024|Implementación de validación en formulario de recuperación de contraseña|20|✅ Finalizada.| 
+|14.|10/12/2024|Implementación de la vista principal de propiedades|10|✅ Finalizada.|
 
 ## Autor 
 
