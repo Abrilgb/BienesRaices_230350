@@ -4,16 +4,24 @@ block contenido
     div.py-10
         h2.text-center.font-extrabold.my-10.text-4xl.text-brown-200 Bienes   
             span.font-normal.text-brown-100 Raices  
-        h2.text-center.font-extrabold.text-2xl.text-white= page 
+        h2.text-center.font-extrabold.text-2xl.text-white= page
+        if errors
+            div.max-w-md.mx-auto.my-10
+                each error in errors
+                    if error.msg
+                        div.bg-reds.text-white.p-4.rounded-md.flex.items-center.justify-between.mb-2
+                            p.text-sm.font-bold= error.msg
+                            button.ml-2.bg-transparent.border-0.text-white(onclick="this.parentElement.style.display='none'") &times; 
         .mt-8.mx-auto.max-w-md
             .bg-white.py-8.px-4.shadow.rounded-lg
-                form(action="").space-y-5.px-6
+                form(method="POST" action="/auth/login").space-y-5.px-6
+                    input(type="hidden" name="_csrf" value=csrfToken)
                     div
                         label.block.text-sm.uppercase.text-brown-200.mb-2.font-bold Email de Registro: 
-                        input#email.w-full.px-3.py-2.border-2.border-green-100.rounded-md(type="email" placeholder="Ej. usuario@paisdelasmaravillas.com" name="correo-usuario")
+                        input#email.w-full.px-3.py-2.border-2.border-green-100.rounded-md(type="email" placeholder="Ej. usuario@paisdelasmaravillas.com" name="correo_usuario")
                     div
                         label.block.text-sm.uppercase.text-brown-200.mb-2.font-bold Contraseña: 
-                        input#password.w-full.px-3.py-2.border-2.border-green-100.rounded-md(type="password" placeholder="Minimo de 8 caracteres" name="pass-usuario")
+                        input#password.w-full.px-3.py-2.border-2.border-green-100.rounded-md(type="password" placeholder="Minimo de 8 caracteres" name="pass_usuario")
                     div.flex.items-center.justify-between
                         a.text-green-100.text-xs(href="/auth/createAccount" class="text-green-100 text-xs hover:underline decoration-2 hover:decoration-brown-200") ¿No tienes cuenta? Regístrate  
                         a.text-green-100.text-xs(href="/auth/passwordRecovery" class="text-green-100 text-xs hover:underline decoration-2 hover:decoration-brown-200") Recuperar Contraseña

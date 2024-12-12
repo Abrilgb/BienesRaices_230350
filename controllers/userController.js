@@ -1,14 +1,15 @@
 import { check, validationResult } from "express-validator";
 import User from "../models/Usuario.js";
 import bcrypt from 'bcrypt'
-import { generateId } from "../helpers/tokens.js";
+import { generateId,generarJWT } from "../helpers/tokens.js";
 import {registerEmail,passwordRecoveryEmail} from '../helpers/emails.js'
 import { where } from "sequelize";
 
 const formularioLogin = (req, res) => {
     res.render('auth/login', {
         autenticado: true,
-        page: "Ingresa a la Plataforma"
+        page: "Ingresa a la Plataforma",
+        csrfToken: req.csrfToken(),
     });
 };
 
@@ -82,10 +83,10 @@ const authenticate = async (req, res) => {
         // Generar el token JWT
         const token = generarJWT({ id: user.id, nombre: user.name });
 
-        // Almacenar el token en una cookie
-        return res.cookie('_token', token, {
+         // Almacenar el token en una cookie
+         return res.cookie('_token', token, {
             httpOnly: true,
-        }).redirect('/myProperties');
+        }).redirect('/properties/myproperties');
     } catch (error) {
         console.error(error);
         return res.status(500).render('auth/login', {
